@@ -1,0 +1,23 @@
+{
+  "name": "pkgbuild-editor",
+  "version": "0.0.1",
+  "description": "Your all-in-one parser and editor for seamless PKGBUILD file handling. ",
+  "keywords": [
+    "PKGBUILD",
+    "parser",
+    "lexer",
+    "editor",
+    "AUR",
+    "Archlinux"
+  ],
+  "author": "Robin Bühler",
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
+  "scripts": {},
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/pkgbuild-editor"
+  }
+}

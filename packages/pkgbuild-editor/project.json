@@ -1,0 +1,32 @@
+{
+  "name": "pkgbuild-editor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pkgbuild-editor/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/pkgbuild-editor"
+      }
+    },
+    "prepare": {
+      "dependsOn": ["build"],
+      "command": "cp packages/pkgbuild-editor/README.md dist/packages/pkgbuild-editor"
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/packages/pkgbuild-editor",
+        "coverage": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,13 @@
+{
+	"name": "pkgbuild-editor-dev",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mk12.better-git-line-blame",
+				"dbaeumer.vscode-eslint",
+				"GitHub.copilot"
+			]
+		}
+	}
+}
