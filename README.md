@@ -1,6 +1,7 @@
 # pkgbuild-editor
 
+Your all-in-one parser and editor for seamless [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) file handling.
 
-## Ressources
+## Packages
 
-https://www.totaltypescript.com/build-a-node-app-with-typescript-and-esbuild
+
