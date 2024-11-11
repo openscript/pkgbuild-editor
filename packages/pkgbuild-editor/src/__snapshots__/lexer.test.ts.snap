@@ -17,9 +17,9 @@ exports[`lexer.ts > should tokenize a comment 1`] = `
       "categoryMatchesMap": {},
       "isParent": false,
       "name": "Comment",
-      "tokenTypeIdx": 3,
+      "tokenTypeIdx": 4,
     },
-    "tokenTypeIdx": 3,
+    "tokenTypeIdx": 4,
   },
 ]
 `;

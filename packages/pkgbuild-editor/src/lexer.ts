@@ -17,6 +17,18 @@ export const Tokens = {
     pattern: /\s+/,
     categories: [Groups.Formatting],
   }),
+  Variable: createToken({
+    name: 'Variable',
+    pattern: /[a-zA-Z_][a-zA-Z0-9_]*/,
+  }),
+  Comma: createToken({ name: 'Comma', pattern: /,/ }),
+  Equals: createToken({ name: 'Equals', pattern: /=/ }),
+  ParanLeft: createToken({ name: 'ParanLeft', pattern: /\(/ }),
+  ParanRight: createToken({ name: 'ParanRight', pattern: /\)/ }),
+  CurlyLeft: createToken({ name: 'CurlyLeft', pattern: /{/ }),
+  CurlyRight: createToken({ name: 'CurlyRight', pattern: /}/ }),
+  StringLiteral: createToken({ name: 'StringLiteral', pattern: /"\w+"/ }),
+  NumberLiteral: createToken({ name: 'NumberLiteral', pattern: /\d+(\.\d+)?/ }),
 };
 
 export const AllTokens = Object.values(Tokens);

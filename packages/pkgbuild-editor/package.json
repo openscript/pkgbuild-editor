@@ -15,7 +15,9 @@
   "type": "module",
   "main": "./index.js",
   "typings": "./index.d.ts",
-  "scripts": {},
+  "scripts": {
+    "build:types": "tsx ./src/scripts/generateDts.ts"
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/pkgbuild-editor"

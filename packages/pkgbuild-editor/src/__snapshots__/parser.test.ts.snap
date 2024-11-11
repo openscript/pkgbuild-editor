@@ -1,3 +1,37 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`parser.ts > should parse comments 1`] = `undefined`;
+exports[`parser.ts > should parse comments 1`] = `
+{
+  "children": {
+    "formatting": [
+      {
+        "children": {
+          "Comment": [
+            {
+              "endColumn": 14,
+              "endLine": 1,
+              "endOffset": 13,
+              "image": "# Test comment",
+              "startColumn": 1,
+              "startLine": 1,
+              "startOffset": 0,
+              "tokenType": {
+                "CATEGORIES": [],
+                "PATTERN": /#\\.\\*/,
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "isParent": false,
+                "name": "Comment",
+                "tokenTypeIdx": 4,
+              },
+              "tokenTypeIdx": 4,
+            },
+          ],
+        },
+        "name": "formatting",
+      },
+    ],
+  },
+  "name": "pkgbuild",
+}
+`;
