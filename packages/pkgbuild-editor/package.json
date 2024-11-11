@@ -1,6 +1,6 @@
 {
   "name": "pkgbuild-editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Your all-in-one parser and editor for seamless PKGBUILD file handling. ",
   "keywords": [
     "PKGBUILD",
