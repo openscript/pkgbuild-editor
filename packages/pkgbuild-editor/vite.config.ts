@@ -40,9 +40,6 @@ export default defineConfig({
 
   test: {
     globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
     environment: 'node',
     coverage: {
       reportsDirectory: '../../coverage/packages/pkgbuild-editor',
