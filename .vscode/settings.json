@@ -1,0 +1,23 @@
+{
+  "eslint.useFlatConfig": true,
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": null,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "scminput": false,
+    "markdown": true
+  },
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single"
+}
