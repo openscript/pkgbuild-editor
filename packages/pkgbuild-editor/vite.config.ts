@@ -1,7 +1,7 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import * as path from 'path';
+import * as path from 'node:path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
@@ -34,7 +34,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ["yaml"],
+      external: ['yaml'],
     },
   },
 
@@ -45,7 +45,7 @@ export default defineConfig({
     },
     environment: 'node',
     coverage: {
-      reportsDirectory: '../../coverage/packages/pkgbuild-editor'
+      reportsDirectory: '../../coverage/packages/pkgbuild-editor',
     },
     reporters: ['verbose'],
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],

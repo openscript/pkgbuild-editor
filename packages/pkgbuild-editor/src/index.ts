@@ -1,3 +1,3 @@
-export const hello = "test";
+export const hello = 'test';
 
 console.log(hello);

@@ -15,8 +15,6 @@
       "cache": true,
       "inputs": [
         "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.js"
       ]
     },
