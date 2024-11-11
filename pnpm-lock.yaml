@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      chevrotain:
-        specifier: ^11.0.3
-        version: 11.0.3
       pkgbuild-editor:
         specifier: workspace:*
         version: link:dist/packages/pkgbuild-editor
@@ -80,6 +77,10 @@ importers:
         version: 2.1.4(@types/node@22.9.0)(@vitest/ui@2.1.4)
 
   packages/pkgbuild-editor:
+    dependencies:
+      chevrotain:
+        specifier: ^11.0.3
+        version: 11.0.3
     publishDirectory: ../../dist/packages/pkgbuild-editor
 
 packages:

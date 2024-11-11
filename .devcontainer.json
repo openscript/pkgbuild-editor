@@ -6,7 +6,8 @@
 			"extensions": [
 				"mk12.better-git-line-blame",
 				"dbaeumer.vscode-eslint",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"vitest.explorer"
 			]
 		}
 	}

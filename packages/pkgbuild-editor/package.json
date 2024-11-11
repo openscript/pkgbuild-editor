@@ -19,5 +19,8 @@
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/pkgbuild-editor"
+  },
+  "dependencies": {
+    "chevrotain": "^11.0.3"
   }
 }

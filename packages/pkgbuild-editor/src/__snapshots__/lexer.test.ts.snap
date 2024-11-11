@@ -1,0 +1,105 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lexer.ts > should tokenize a comment 1`] = `
+[
+  {
+    "endColumn": 14,
+    "endLine": 1,
+    "endOffset": 13,
+    "image": "# Test comment",
+    "startColumn": 1,
+    "startLine": 1,
+    "startOffset": 0,
+    "tokenType": {
+      "CATEGORIES": [],
+      "PATTERN": /#\\.\\*/,
+      "categoryMatches": [],
+      "categoryMatchesMap": {},
+      "isParent": false,
+      "name": "Comment",
+      "tokenTypeIdx": 3,
+    },
+    "tokenTypeIdx": 3,
+  },
+]
+`;
+
+exports[`lexer.ts > should tokenize multiple comments 1`] = `
+[
+  {
+    "endColumn": 14,
+    "endLine": 1,
+    "endOffset": 13,
+    "image": "# Test comment",
+    "startColumn": 1,
+    "startLine": 1,
+    "startOffset": 0,
+    "tokenType": {
+      "CATEGORIES": [],
+      "PATTERN": /#\\.\\*/,
+      "categoryMatches": [],
+      "categoryMatchesMap": {},
+      "isParent": false,
+      "name": "Comment",
+      "tokenTypeIdx": 4,
+    },
+    "tokenTypeIdx": 4,
+  },
+  {
+    "endColumn": 15,
+    "endLine": 1,
+    "endOffset": 14,
+    "image": "
+",
+    "startColumn": 15,
+    "startLine": 1,
+    "startOffset": 14,
+    "tokenType": {
+      "CATEGORIES": [
+        {
+          "CATEGORIES": [],
+          "PATTERN": /NOT_APPLICABLE/,
+          "categoryMatches": [
+            5,
+            6,
+          ],
+          "categoryMatchesMap": {
+            "5": true,
+            "6": true,
+          },
+          "isParent": true,
+          "name": "Formatting",
+          "tokenTypeIdx": 3,
+        },
+      ],
+      "LINE_BREAKS": true,
+      "PATTERN": /\\\\n/,
+      "categoryMatches": [],
+      "categoryMatchesMap": {},
+      "isParent": false,
+      "name": "Newline",
+      "tokenTypeIdx": 5,
+    },
+    "tokenTypeIdx": 5,
+  },
+  {
+    "endColumn": 17,
+    "endLine": 2,
+    "endOffset": 31,
+    "image": "# Another comment",
+    "startColumn": 1,
+    "startLine": 2,
+    "startOffset": 15,
+    "tokenType": {
+      "CATEGORIES": [],
+      "PATTERN": /#\\.\\*/,
+      "categoryMatches": [],
+      "categoryMatchesMap": {},
+      "isParent": false,
+      "name": "Comment",
+      "tokenTypeIdx": 4,
+    },
+    "tokenTypeIdx": 4,
+  },
+]
+`;
