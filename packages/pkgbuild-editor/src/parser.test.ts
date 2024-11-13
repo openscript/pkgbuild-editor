@@ -1,5 +1,4 @@
-import { PkgbuildLexer } from './lexer';
-import { PkgbuildParser } from './parser';
+import { generateCst } from './actions/generateCst';
 
 const pkgbuildFile1 = `
 # Based on the template from https://daveparrish.net/posts/2019-11-16-Better-AppImage-PKGBUILD-template.html
@@ -55,11 +54,9 @@ package() {
 
 describe('parser.ts', () => {
   it('should parse comments', () => {
-    const lexingResult = PkgbuildLexer.tokenize(`# Test comment`);
-    const parser = new PkgbuildParser();
-    parser.input = lexingResult.tokens;
-    const cst = parser.pkgbuild();
-
-    expect(cst).toMatchSnapshot();
+    const { cst } = generateCst('# This is a comment');
+    expect(
+      cst.children.formatting?.[0].children.Comment?.[0].tokenType.name
+    ).toMatchInlineSnapshot(`"Comment"`);
   });
 });

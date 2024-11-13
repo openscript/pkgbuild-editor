@@ -14,7 +14,7 @@ export const Tokens = {
   }),
   Whitespace: createToken({
     name: 'Whitespace',
-    pattern: /\s+/,
+    pattern: /[ \t]+/,
     categories: [Groups.Formatting],
   }),
   Variable: createToken({
@@ -32,5 +32,5 @@ export const Tokens = {
 };
 
 export const AllTokens = Object.values(Tokens);
-
+export const AllTokenNames = AllTokens.map((token) => token.name);
 export const PkgbuildLexer = new Lexer(AllTokens);

@@ -16,7 +16,8 @@
   "main": "./index.js",
   "typings": "./index.d.ts",
   "scripts": {
-    "build:types": "tsx ./src/scripts/generateDts.ts"
+    "build:types": "tsx ./src/scripts/saveDtsCli.ts",
+    "build:diagram": "tsx ./src/scripts/saveDiagram.ts"
   },
   "publishConfig": {
     "access": "public",

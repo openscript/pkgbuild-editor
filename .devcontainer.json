@@ -8,7 +8,9 @@
 				"mk12.better-git-line-blame",
 				"dbaeumer.vscode-eslint",
 				"GitHub.copilot",
-				"vitest.explorer"
+				"vitest.explorer",
+				"esbenp.prettier-vscode",
+				"yzhang.markdown-all-in-one"
 			]
 		}
 	}

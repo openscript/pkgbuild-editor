@@ -1,25 +1,31 @@
-import { CstParser } from 'chevrotain';
+import { CstParser, IToken, ParserMethod } from 'chevrotain';
 import { AllTokens, Tokens } from './lexer';
+import { PkgbuildCstNode } from './parser.gen';
 
 export class PkgbuildParser extends CstParser {
-  constructor() {
+  constructor(input?: IToken[]) {
     super(AllTokens);
     this.performSelfAnalysis();
+
+    if (input) this.input = input;
   }
 
-  // Entry rule
   public pkgbuild = this.RULE('pkgbuild', () => {
     this.MANY(() => {
       this.OR([
         { ALT: () => this.SUBRULE(this.formatting) },
+        { ALT: () => this.SUBRULE(this.comment) },
         { ALT: () => this.SUBRULE(this.assignment) },
       ]);
     });
+  }) as ParserMethod<[], PkgbuildCstNode>;
+
+  private comment = this.RULE('comment', () => {
+    this.CONSUME(Tokens.Comment);
   });
 
   private formatting = this.RULE('formatting', () => {
     this.OR([
-      { ALT: () => this.CONSUME(Tokens.Comment) },
       { ALT: () => this.CONSUME(Tokens.Newline) },
       { ALT: () => this.CONSUME(Tokens.Whitespace) },
     ]);
@@ -27,7 +33,9 @@ export class PkgbuildParser extends CstParser {
 
   private assignment = this.RULE('assignment', () => {
     this.CONSUME(Tokens.Variable);
+    this.OPTION(() => this.CONSUME(Tokens.Whitespace));
     this.CONSUME(Tokens.Equals);
+    this.OPTION2(() => this.CONSUME2(Tokens.Whitespace));
     this.OR([
       { ALT: () => this.CONSUME(Tokens.StringLiteral) },
       { ALT: () => this.CONSUME(Tokens.NumberLiteral) },

@@ -1,11 +1,18 @@
 # pkgbuild-editor
 
-Your all-in-one parser and editor for seamless [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) file handling.
+Your all-in-one code-based parser and editor for seamless [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) file handling.
 
 ## About
 
-When automating Arch User Repository handling, you need to be able to manipulate `PKGBUILD` files. Of course one could
-use regular expressions to modify the files, but a complete understanding of the file within an AST is more fulfilling.
+When managing the Arch User Repository (AUR), precise control over `PKGBUILD` files from code is essential, when you want to automate things. `pkgbuild-editor` provides a powerful parser and editor, transforming `PKGBUILD` handling into a streamlined experience. Instead of relying on regular expressions, this tool leverages an Concrete Syntax Tree (CST) to offer a deeper, more reliable understanding of `PKGBUILD` files. Whether you're automating updates, modifying dependencies, or simply tweaking build instructions, `pkgbuild-editor` gives you a structured approach for efficient and error-free edits.
+
+## Features
+
+- [ ] Parse `PKGBUILD` files
+- [ ] Edit `PKGBUILD` files
+- [ ] Create new `PKGBUILD` files from scratch
+- [ ] Write `PKGBUILD` files
+- [ ] Preserve comments and formatting, when parsed
 
 ## Packages
 
