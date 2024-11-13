@@ -1,4 +1,3 @@
-import { generateCstDts } from 'chevrotain';
 import { PkgbuildLexer } from './lexer';
 import { PkgbuildParser } from './parser';
 
