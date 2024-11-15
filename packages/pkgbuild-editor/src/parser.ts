@@ -37,9 +37,9 @@ export class PkgbuildParser extends CstParser {
     this.CONSUME(Tokens.Equals);
     this.OPTION2(() => this.CONSUME2(Tokens.Whitespace));
     this.OR([
-      { ALT: () => this.CONSUME(Tokens.StringLiteral) },
+      { ALT: () => this.SUBRULE(this.string) },
       { ALT: () => this.CONSUME(Tokens.NumberLiteral) },
-      { ALT: () => this.array() },
+      { ALT: () => this.SUBRULE(this.array) },
     ]);
   });
 
@@ -48,9 +48,23 @@ export class PkgbuildParser extends CstParser {
     this.MANY_SEP({
       SEP: Tokens.Comma,
       DEF: () => {
-        this.SUBRULE(this.assignment);
+        this.OR([
+          { ALT: () => this.SUBRULE(this.string) },
+          { ALT: () => this.CONSUME(Tokens.NumberLiteral) },
+        ]);
       },
     });
     this.CONSUME(Tokens.ParanRight);
+  });
+
+  private string = this.RULE('string', () => {
+    this.CONSUME(Tokens.BeginString);
+    this.MANY(() => {
+      this.OR([
+        { ALT: () => this.CONSUME(Tokens.Text) },
+        { ALT: () => this.CONSUME(Tokens.Reference) },
+      ]);
+    });
+    this.CONSUME2(Tokens.EndString);
   });
 }

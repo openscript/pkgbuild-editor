@@ -8,6 +8,9 @@ const variations = [
   `dummy="value"`,
   `dummy = "value"\n#Test comment`,
   `\n\ndummy = "value"\n#Test comment`,
+  `dummy = 123`,
+  `dummy = 1.2.3`,
+  `noextract=("\${_appimage}")`,
 ];
 
 describe('renderTokens.ts', () => {

@@ -7,7 +7,17 @@ export interface PkgbuildCstNode extends CstNode {
 
 export type PkgbuildCstChildren = {
   formatting?: FormattingCstNode[];
+  comment?: CommentCstNode[];
   assignment?: AssignmentCstNode[];
+};
+
+export interface CommentCstNode extends CstNode {
+  name: "comment";
+  children: CommentCstChildren;
+}
+
+export type CommentCstChildren = {
+  Comment: IToken[];
 };
 
 export interface FormattingCstNode extends CstNode {
@@ -16,7 +26,6 @@ export interface FormattingCstNode extends CstNode {
 }
 
 export type FormattingCstChildren = {
-  Comment?: IToken[];
   Newline?: IToken[];
   Whitespace?: IToken[];
 };
@@ -28,13 +37,11 @@ export interface AssignmentCstNode extends CstNode {
 
 export type AssignmentCstChildren = {
   Variable: IToken[];
+  Whitespace?: (IToken)[];
   Equals: IToken[];
   StringLiteral?: IToken[];
   NumberLiteral?: IToken[];
-  ParanLeft?: IToken[];
-  assignment?: AssignmentCstNode[];
-  Comma?: IToken[];
-  ParanRight?: IToken[];
+  array?: ArrayCstNode[];
 };
 
 export interface ArrayCstNode extends CstNode {
@@ -44,13 +51,15 @@ export interface ArrayCstNode extends CstNode {
 
 export type ArrayCstChildren = {
   ParanLeft: IToken[];
-  assignment?: AssignmentCstNode[];
+  StringLiteral?: IToken[];
+  NumberLiteral?: IToken[];
   Comma?: IToken[];
   ParanRight: IToken[];
 };
 
 export interface ICstNodeVisitor<IN, OUT> extends ICstVisitor<IN, OUT> {
   pkgbuild(children: PkgbuildCstChildren, param?: IN): OUT;
+  comment(children: CommentCstChildren, param?: IN): OUT;
   formatting(children: FormattingCstChildren, param?: IN): OUT;
   assignment(children: AssignmentCstChildren, param?: IN): OUT;
   array(children: ArrayCstChildren, param?: IN): OUT;
