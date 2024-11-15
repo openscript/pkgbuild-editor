@@ -13,6 +13,10 @@ const variations = [
   `noextract=("\${_appimage}")`,
   `multiple=("hello uhu uhuh \${_appimage} asdasdasd \${asdasdas}")`,
   `license=('custom:Unlicense')`,
+  `prepare() {
+    chmod +x "\${_appimage}"
+    ./"\${_appimage}" --appimage-extract
+}`,
 ];
 
 describe('renderTokens.ts', () => {

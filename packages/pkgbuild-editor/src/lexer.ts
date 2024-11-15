@@ -33,12 +33,12 @@ export const Tokens = {
   CurlyLeft: createToken({ name: 'CurlyLeft', pattern: /{/ }),
   CurlyRight: createToken({ name: 'CurlyRight', pattern: /}/ }),
   Comment: createToken({ name: 'Comment', pattern: /#.*/ }),
-  Variable: createToken({
-    name: 'Variable',
+  Identifier: createToken({
+    name: 'Identifier',
     pattern: /[a-zA-Z_][a-zA-Z0-9_]*/,
   }),
   NumberLiteral: createToken({ name: 'NumberLiteral', pattern: /\d+(\.\d+)*/ }),
-  Text: createToken({
+  StringLiteral: createToken({
     name: 'Text',
     pattern: /[^'"$]+/,
   }),
@@ -46,12 +46,12 @@ export const Tokens = {
     name: 'Reference',
     pattern: /\${\w+}/,
   }),
-  BeginString: createToken({
-    name: 'BeginString',
+  BeginStringLiteral: createToken({
+    name: 'BeginStringLiteral',
     pattern: QUOTE_PATTERN,
     push_mode: 'stringMode',
   }),
-  EndString: createToken({
+  EndStringLiteral: createToken({
     name: 'EndString',
     pattern: customEndStringPattern,
     pop_mode: true,
@@ -75,13 +75,17 @@ export class PkgbuildLexer extends Lexer {
           Tokens.CurlyLeft,
           Tokens.CurlyRight,
           Tokens.Comment,
-          Tokens.Variable,
+          Tokens.Identifier,
           Tokens.NumberLiteral,
-          Tokens.Text,
+          Tokens.StringLiteral,
           Tokens.Reference,
-          Tokens.BeginString,
+          Tokens.BeginStringLiteral,
         ],
-        stringMode: [Tokens.Text, Tokens.Reference, Tokens.EndString],
+        stringMode: [
+          Tokens.StringLiteral,
+          Tokens.Reference,
+          Tokens.EndStringLiteral,
+        ],
       },
     });
   }

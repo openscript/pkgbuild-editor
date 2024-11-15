@@ -32,7 +32,7 @@ export class PkgbuildParser extends CstParser {
   });
 
   private assignment = this.RULE('assignment', () => {
-    this.CONSUME(Tokens.Variable);
+    this.CONSUME(Tokens.Identifier);
     this.OPTION(() => this.CONSUME(Tokens.Whitespace));
     this.CONSUME(Tokens.Equals);
     this.OPTION2(() => this.CONSUME2(Tokens.Whitespace));
@@ -58,13 +58,13 @@ export class PkgbuildParser extends CstParser {
   });
 
   private string = this.RULE('string', () => {
-    this.CONSUME(Tokens.BeginString);
+    this.CONSUME(Tokens.BeginStringLiteral);
     this.MANY(() => {
       this.OR([
-        { ALT: () => this.CONSUME(Tokens.Text) },
+        { ALT: () => this.CONSUME(Tokens.StringLiteral) },
         { ALT: () => this.CONSUME(Tokens.Reference) },
       ]);
     });
-    this.CONSUME2(Tokens.EndString);
+    this.CONSUME2(Tokens.EndStringLiteral);
   });
 }
