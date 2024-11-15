@@ -1,4 +1,23 @@
-import { createToken, Lexer } from 'chevrotain';
+import { createToken, CustomPatternMatcherFunc, Lexer } from 'chevrotain';
+
+const QUOTE_PATTERN = /['"]/;
+
+const customEndStringPattern: CustomPatternMatcherFunc = (
+  text,
+  offset,
+  tokens
+) => {
+  const quote = text[offset];
+  if (!QUOTE_PATTERN.test(quote)) return null;
+
+  const previousQuote = tokens.find(
+    (t) => t.tokenType.PUSH_MODE === 'stringMode'
+  );
+  if (!previousQuote) return null;
+  if (quote === previousQuote.image) return [quote];
+
+  return null;
+};
 
 export const Tokens = {
   Whitespace: createToken({ name: 'Whitespace', pattern: /[ \t]+/ }),
@@ -21,7 +40,7 @@ export const Tokens = {
   NumberLiteral: createToken({ name: 'NumberLiteral', pattern: /\d+(\.\d+)*/ }),
   Text: createToken({
     name: 'Text',
-    pattern: /[^"$]+/,
+    pattern: /[^'"$]+/,
   }),
   Reference: createToken({
     name: 'Reference',
@@ -29,36 +48,41 @@ export const Tokens = {
   }),
   BeginString: createToken({
     name: 'BeginString',
-    pattern: /"/,
+    pattern: QUOTE_PATTERN,
     push_mode: 'stringMode',
   }),
   EndString: createToken({
     name: 'EndString',
-    pattern: /"/,
+    pattern: customEndStringPattern,
     pop_mode: true,
+    line_breaks: true,
   }),
 };
 
 export const AllTokens = Object.values(Tokens);
-export const PkgbuildLexer = new Lexer({
-  defaultMode: 'defaultMode',
-  modes: {
-    defaultMode: [
-      Tokens.Whitespace,
-      Tokens.Newline,
-      Tokens.Comma,
-      Tokens.Equals,
-      Tokens.ParanLeft,
-      Tokens.ParanRight,
-      Tokens.CurlyLeft,
-      Tokens.CurlyRight,
-      Tokens.Comment,
-      Tokens.Variable,
-      Tokens.NumberLiteral,
-      Tokens.Text,
-      Tokens.Reference,
-      Tokens.BeginString,
-    ],
-    stringMode: [Tokens.Text, Tokens.Reference, Tokens.EndString],
-  },
-});
+export class PkgbuildLexer extends Lexer {
+  constructor() {
+    super({
+      defaultMode: 'defaultMode',
+      modes: {
+        defaultMode: [
+          Tokens.Whitespace,
+          Tokens.Newline,
+          Tokens.Comma,
+          Tokens.Equals,
+          Tokens.ParanLeft,
+          Tokens.ParanRight,
+          Tokens.CurlyLeft,
+          Tokens.CurlyRight,
+          Tokens.Comment,
+          Tokens.Variable,
+          Tokens.NumberLiteral,
+          Tokens.Text,
+          Tokens.Reference,
+          Tokens.BeginString,
+        ],
+        stringMode: [Tokens.Text, Tokens.Reference, Tokens.EndString],
+      },
+    });
+  }
+}

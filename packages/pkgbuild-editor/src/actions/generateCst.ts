@@ -10,12 +10,13 @@ type CstReturn = {
 };
 
 export const generateCst = (input: string): CstReturn => {
-  const lexer = PkgbuildLexer.tokenize(input);
-  const parser = new PkgbuildParser(lexer.tokens);
+  const lexer = new PkgbuildLexer();
+  const lexerResults = lexer.tokenize(input);
+  const parser = new PkgbuildParser(lexerResults.tokens);
   const cst = parser.pkgbuild();
   return {
     cst,
-    lexerErrors: lexer.errors,
+    lexerErrors: lexerResults.errors,
     parserErrors: parser.errors,
   };
 };

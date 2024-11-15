@@ -11,6 +11,8 @@ const variations = [
   `dummy = 123`,
   `dummy = 1.2.3`,
   `noextract=("\${_appimage}")`,
+  `multiple=("hello uhu uhuh \${_appimage} asdasdasd \${asdasdas}")`,
+  `license=('custom:Unlicense')`,
 ];
 
 describe('renderTokens.ts', () => {

@@ -22,5 +22,8 @@
     "markdown": true
   },
   "javascript.preferences.quoteStyle": "single",
-  "typescript.preferences.quoteStyle": "single"
+  "typescript.preferences.quoteStyle": "single",
+  "editor.rulers": [
+    120
+  ]
 }
