@@ -36,12 +36,37 @@ export interface AssignmentCstNode extends CstNode {
 }
 
 export type AssignmentCstChildren = {
-  Variable: IToken[];
-  Whitespace?: (IToken)[];
+  Identifier: IToken[];
+  Whitespace?: IToken[];
+  literal?: LiteralCstNode[];
+  functional?: FunctionalCstNode[];
+};
+
+export interface LiteralCstNode extends CstNode {
+  name: "literal";
+  children: LiteralCstChildren;
+}
+
+export type LiteralCstChildren = {
   Equals: IToken[];
+  Whitespace?: IToken[];
   string?: StringCstNode[];
   NumberLiteral?: IToken[];
   array?: ArrayCstNode[];
+};
+
+export interface FunctionalCstNode extends CstNode {
+  name: "functional";
+  children: FunctionalCstChildren;
+}
+
+export type FunctionalCstChildren = {
+  ParanLeft: IToken[];
+  ParanRight: IToken[];
+  Whitespace?: IToken[];
+  CurlyLeft: IToken[];
+  Body: IToken[];
+  CurlyRight: IToken[];
 };
 
 export interface ArrayCstNode extends CstNode {
@@ -63,7 +88,7 @@ export interface StringCstNode extends CstNode {
 }
 
 export type StringCstChildren = {
-  BeginString: IToken[];
+  BeginStringLiteral: IToken[];
   Text?: IToken[];
   Reference?: IToken[];
   EndString: IToken[];
@@ -74,6 +99,8 @@ export interface ICstNodeVisitor<IN, OUT> extends ICstVisitor<IN, OUT> {
   comment(children: CommentCstChildren, param?: IN): OUT;
   formatting(children: FormattingCstChildren, param?: IN): OUT;
   assignment(children: AssignmentCstChildren, param?: IN): OUT;
+  literal(children: LiteralCstChildren, param?: IN): OUT;
+  functional(children: FunctionalCstChildren, param?: IN): OUT;
   array(children: ArrayCstChildren, param?: IN): OUT;
   string(children: StringCstChildren, param?: IN): OUT;
 }

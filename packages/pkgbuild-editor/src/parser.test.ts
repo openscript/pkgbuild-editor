@@ -7,7 +7,7 @@ const pkgbuildFile1 = `
 _pkgname=kchat
 _originalpkgname=kChat
 
-pkgname="\${_pkgname}"-appimage
+pkgname="\${_pkgname}-appimage"
 pkgver=3.3.3
 pkgrel=1
 pkgdesc="kChat is an instant messaging service which enables you to discuss, share and coordinate your teams in complete security via your Internet browser, mobile phone, tablet or computer."
@@ -53,10 +53,10 @@ package() {
 `;
 
 describe('parser.ts', () => {
-  it('should parse comments', () => {
-    const { cst } = generateCst('# This is a comment');
-    expect(
-      cst.children.formatting?.[0].children.Comment?.[0].tokenType.name
-    ).toMatchInlineSnapshot(`"Comment"`);
+  it('should parse pkgbuild file', () => {
+    const result = generateCst(pkgbuildFile1);
+    expect(result.lexerErrors).toHaveLength(0);
+    expect(result.parserErrors).toHaveLength(0);
+    expect(result.cst).toBeDefined();
   });
 });
