@@ -43,9 +43,7 @@ arch='ohoh'`,
 describe('renderTokens.ts', () => {
   it('should render tokens', () => {
     variations.forEach((input) => {
-      const { cst, lexerErrors, parserErrors } = generateCst(input);
-      lexerErrors.forEach((error) => console.error(error));
-      parserErrors.forEach((error) => console.error(error));
+      const { cst } = generateCst(input);
       if (!cst) throw new Error('CST is undefined');
       const flattened = flattenCst(cst);
       const result = renderTokens(flattened);
